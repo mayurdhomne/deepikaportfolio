@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepika Patle - UI/UX Designer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#4f46e5',
+                        success: '#10b981',
+                        error: '#ef4444'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .typing::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .skill-progress {
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+        .form-label {
+            position: absolute;
+            left: 1rem;
+            top: 0.75rem;
+            color: #6b7280;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: #6366f1;
+        }
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateX(150%);
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+            max-width: 350px;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white text-gray-800">
+    <!-- Notification -->
+    <div id="notification" class="notification bg-white border border-gray-200">
+        <div class="flex items-start">
+            <div id="notification-icon" class="mr-3 mt-0.5">
+                <i class="ri-checkbox-circle-fill text-success text-xl"></i>
+            </div>
+            <div>
+                <h3 id="notification-title" class="font-medium text-gray-900">Success</h3>
+                <p id="notification-message" class="text-gray-600 mt-1">Your message has been sent successfully!</p>
+            </div>
+            <button id="close-notification" class="ml-4 text-gray-500 hover:text-gray-700">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    </div>
+
+    <header class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="text-xl font-semibold font-poppins">Deepika Patle</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="hover:text-primary transition-colors">About</a>
+                    <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                    <button id="download-cv" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 transition-colors flex items-center gap-2">
+                        <i class="ri-download-line"></i>
+                        Download CV
+                    </button>
+                </nav>
+                <button class="md:hidden w-10 h-10 flex items-center justify-center">
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+       <section class="min-h-screen flex items-center justify-center relative overflow-hidden" style="background-image: url('/deep.jpeg'); background-size: cover; background-position: center;">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+
+    <!-- Content -->
+    <div class="container mx-auto px-6 relative text-center">
+        <div class="reveal">
+            <h1 class="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl mb-6 typing text-gray-900">Hi, I'm Deepika Patle</h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8">Creative UI/UX Designer</p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-full hover:bg-primary/90 transition-all hover:scale-105">
+                    View My Work
+                </a>
+                <a href="#contact" class="border border-primary text-primary px-8 py-3 rounded-full hover:bg-primary/5 transition-all">
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl text-center mb-16 reveal">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative floating reveal">
+                        <img src="/deep.jpeg" alt="About Me" class="rounded-2xl shadow-xl">
+                    </div>
+                    <div class="reveal">
+                        <h3 class="font-poppins font-semibold text-2xl mb-6">Passionate UI/UX Designer</h3>
+                        <p class="text-gray-600 mb-8">With over 5 years of experience in creating delightful digital experiences, I specialize in translating complex problems into elegant, intuitive solutions. My approach combines strategic thinking with creative design to deliver impactful results.</p>
+                        <div class="grid gap-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">UI Design</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">UX Research</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Prototyping</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl text-center mb-16 reveal">Featured Projects</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group relative overflow-hidden rounded-lg reveal">
+                        <img src="/screenshhot1.png" alt="Project 1" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                <h3 class="font-poppins font-semibold text-xl mb-2">Property Bhandar — Real Estate UI/UX Project</h3>
+                                <p class="mb-4">Property Bhandar is a modern real estate UI/UX concept crafted for smooth, user-friendly property browsing.</p>
+                                <a href="https://www.figma.com/design/zkLLxAevqKoZaOz9XSfXb9/Property-Bhandar?node-id=0-1&t=oBUZXDoJOZGbAQrc-1">
+                                <button class="bg-white text-gray-900 px-6 py-2 !rounded-button hover:bg-gray-100 transition-colors">View Project</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative overflow-hidden rounded-lg reveal">
+                        <img src="/Screenshot3.png" alt="Project 3" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                <h3 class="font-poppins font-semibold text-xl mb-2">Shiksha Digital — Online Examination Portal UI/UX Design</h3>
+                                <p class="mb-4">A clean, user-friendly UI/UX concept designed to simplify online exams with smooth navigation, intuitive layouts, and seamless user experience.</p>
+                                <a href="https://www.figma.com/design/FHojm45mvJpHATIhT5SdDc/Untitled?t=L5t05cZPudvNnEC8-1">
+                                <button class="bg-white text-gray-900 px-6 py-2 !rounded-button hover:bg-gray-100 transition-colors">View Project</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="group relative overflow-hidden rounded-lg reveal">
+                        <img src="/Screenshot2.png" alt="Project 2" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                <h3 class="font-poppins font-semibold text-xl mb-2">Website designs</h3>
+                                <p class="mb-4">Take exams anytime, anywhere with confidence.</p>
+                                <a href="https://www.figma.com/design/gvIy9YSGHohgGUp7J4wDyb/Untitled?node-id=0-1&t=IF1nAAimsv8aJrJr-1">
+                                <button class="bg-white text-gray-900 px-6 py-2 !rounded-button hover:bg-gray-100 transition-colors">View Project</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-lg reveal">
+                        <img src="/Screenshot6.png" alt="Project 2" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                <h3 class="font-poppins font-semibold text-xl mb-2">Property Bhandar — Real Estate Frontend Project</h3>
+                                <p class="mb-4">Property Bhandar is a modern real estate website concept crafted for smooth, user-friendly property browsing.</p>
+                                <a href="https://www.propertybhandar.com/#">
+                                <button class="bg-white text-gray-900 px-6 py-2 !rounded-button hover:bg-gray-100 transition-colors">View Project</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-lg reveal">
+                        <img src="/Screenshot7.png" alt="Project 2" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                <h3 class="font-poppins font-semibold text-xl mb-2">Percept Infosystem — Consultancy Frontend Project</h3>
+                                <p class="mb-4">Comprehensive Training and Skill Development Programs</p>
+                                <a href="#">
+                                <button class="bg-white text-gray-900 px-6 py-2 !rounded-button hover:bg-gray-100 transition-colors">View Project</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="font-poppins font-bold text-3xl md:text-4xl text-center mb-16 reveal">Get in Touch</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="reveal">
+                        <form id="contact-form" action="https://formspree.io/f/meogywbq" method="POST" class="space-y-6">
+                            <div class="relative">
+                                <input type="text" id="name" name="name" class="form-input w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder=" " required>
+                                <label for="name" class="form-label">Your Name</label>
+                            </div>
+                            <div class="relative">
+                                <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder=" " required>
+                                <label for="email" class="form-label">Your Email</label>
+                            </div>
+                            <div class="relative">
+                                <textarea id="message" name="message" rows="4" class="form-input w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder=" " required></textarea>
+                                <label for="message" class="form-label">Your Message</label>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white px-6 py-3 !rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                <i class="ri-send-plane-line"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <div class="relative reveal">
+                        <div class="h-full rounded-lg overflow-hidden" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+                        <div class="absolute inset-0 bg-black/5"></div>
+                        <div class="absolute inset-0 p-8">
+                            <div class="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg">
+                                <h3 class="font-poppins font-semibold text-xl mb-4">Contact Information</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600">Nagpur, Maharashtra</p>
+                                            <p class="text-gray-500 text-sm">India</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                                            <i class="ri-mail-line"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600">dipikapatle474@gmail.com</p>
+                                            <p class="text-gray-500 text-sm">Send me an email</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                                            <i class="ri-phone-line"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600">+91 7724840056</p>
+                                            <p class="text-gray-500 text-sm">Mon-Fri 9am-6pm</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                                            <i class="ri-download-line"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600">Download my CV</p>
+                                            <button id="download-cv-bottom" class="text-primary font-medium hover:underline">Click here</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-poppins font-semibold text-xl mb-4">Deepika Patle</h3>
+                    <p class="text-gray-400">Creative UI/UX Designer crafting beautiful digital experiences.</p>
+                </div>
+                <div>
+                    <h3 class="font-poppins font-semibold text-xl mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-poppins font-semibold text-xl mb-4">Connect</h3>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-dribbble-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-behance-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Deepika Patle. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const text = "Hi, I'm Deepika Patle";
+            const typingElement = document.querySelector('.typing');
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    typingElement.textContent = text.slice(0, index + 1);
+                    index++;
+                    setTimeout(type, 100);
+                }
+            }
+
+            type();
+        });
+    </script>
+
+    <script id="scroll-animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const reveals = document.querySelectorAll('.reveal');
+            const skillBars = document.querySelectorAll('.skill-progress');
+
+            function reveal() {
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', reveal);
+            reveal();
+        });
+    </script>
+
+   <script id="functionality-script">
+  document.addEventListener('DOMContentLoaded', function () {
+    // 📄 CV Download Functionality
+    const downloadCV = () => {
+      try {
+        const cvUrl = '/deepika_patle_portfolio.pdf';  // Updated path to match the actual file
+        const a = document.createElement('a');
+        a.href = cvUrl;
+        a.download = 'Deepika_Patle_Portfolio.pdf';  // Updated filename
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // ✅ Success notification
+        showNotification('CV Downloaded!', 'Your CV has been downloaded successfully.', 'success');
+      } catch (error) {
+        console.error('Error downloading CV:', error);
+        showNotification('Error', 'Failed to download CV. Please try again.', 'error');
+      }
+    };
+
+    // 🖱️ CV Download Buttons
+    const cvButtonTop = document.getElementById('download-cv');
+    const cvButtonBottom = document.getElementById('download-cv-bottom');
+    if (cvButtonTop) cvButtonTop.addEventListener('click', downloadCV);
+    if (cvButtonBottom) cvButtonBottom.addEventListener('click', downloadCV);
+
+    // 📧 Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // 🔍 Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        // 🔒 Basic validation
+        if (!name || !email || !message) {
+          showNotification('Error', 'Please fill out all fields.', 'error');
+          return;
+        }
+
+        // Submit the form using Formspree
+        fetch('https://formspree.io/f/meogywbq', {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            showNotification('Message Sent!', 'Your message has been received. I will get back to you soon.', 'success');
+            contactForm.reset();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showNotification('Error', 'Failed to send message. Please try again.', 'error');
+        });
+      });
+    }
+
+    // 🛎️ Notification System
+    function showNotification(title, message, type) {
+      const notification = document.getElementById('notification');
+      const notificationTitle = document.getElementById('notification-title');
+      const notificationMessage = document.getElementById('notification-message');
+      const notificationIcon = document.getElementById('notification-icon');
+
+      // 📝 Set notification content
+      notificationTitle.textContent = title;
+      notificationMessage.textContent = message;
+
+      // 🔔 Set icon by type
+      notificationIcon.innerHTML = type === 'success'
+        ? '<i class="ri-checkbox-circle-fill text-green-500 text-xl"></i>'
+        : '<i class="ri-close-circle-fill text-red-500 text-xl"></i>';
+
+      // 📢 Show notification
+      notification.classList.add('show');
+
+      // ⏳ Auto-hide after 5 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 5000);
+    }
+
+    // ❌ Close notification manually
+    const closeNotificationButton = document.getElementById('close-notification');
+    if (closeNotificationButton) {
+      closeNotificationButton.addEventListener('click', function () {
+        document.getElementById('notification').classList.remove('show');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
